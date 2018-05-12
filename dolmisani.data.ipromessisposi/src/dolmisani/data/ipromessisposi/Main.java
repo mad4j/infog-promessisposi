@@ -21,14 +21,14 @@ public class Main {
 				"Rodrigo", "Griso", "Tonio",
 				"Egidio", "Agnese",	"Perpetua",
 				"Gervaso", "Azzecca-garbugli", "Gertrude",
-				"Cristoforo", "Attilio", "innominato",
-				"Prassede", "Borromeo");
+				"Cristoforo", "Attilio", "Innominato",
+				"Prassede", "Borromeo", "Provvidenza");
 		
 		HashMap<String, Vector<Integer>> counters = new HashMap<>(names.size());
 		
-		for (String s : names) {
-			counters.put(s, new Vector<>(40));
-		}
+		names.forEach(
+				(s) -> counters.put(s, new Vector<>())
+		);
 		
 		counters.forEach((n, v) -> { 
 			v.setSize(40); 
@@ -48,7 +48,7 @@ public class Main {
 			
 			for (String n : counters.keySet()) {
 				
-				if (l.contains(n)) {
+				if (l.toUpperCase().contains(n.toUpperCase())) {
 					Vector<Integer> v = counters.get(n);
 					
 					v.get(chapterCount);
@@ -64,8 +64,8 @@ public class Main {
 			Vector<Integer> v = counters.get(n);
 			
 			int total = v.stream()
-					      .reduce((x, y) -> x+y)
-					      .get();
+					     .reduce((x, y) -> x+y)
+					     .get();
 			
 			System.out.format("%20s %10d : ", n, total, counters.get(n));
 			for (int i=0; i<chapterCount; i++) {
